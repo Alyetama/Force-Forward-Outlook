@@ -1,0 +1,18 @@
+{
+    "inputs": {
+        "host": {
+            "connectionName": "shared_googledrive",
+            "operationId": "CreateFile",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_googledrive"
+        },
+        "parameters": {
+            "folderPath": "/emails",
+            "name": "@triggerOutputs()?['body/id']",
+            "body": "@triggerOutputs()?['body']"
+        },
+        "authentication": "@parameters('$authentication')"
+    },
+    "metadata": {
+        "operationMetadataId": "<operationMetadataId>"
+    }
+}

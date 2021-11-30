@@ -1,0 +1,20 @@
+{
+    "inputs": {
+        "host": {
+            "connectionName": "shared_office365",
+            "operationId": "OnNewEmailV3",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+        },
+        "parameters": {
+            "folderPath": "Inbox",
+            "includeAttachments": false,
+            "importance": "Any",
+            "fetchOnlyWithAttachment": false
+        },
+        "authentication": "@parameters('$authentication')"
+    },
+    "metadata": {
+        "operationMetadataId": "<operationMetadataId>"
+    },
+    "splitOn": "@triggerOutputs()?['body/value']"
+}
