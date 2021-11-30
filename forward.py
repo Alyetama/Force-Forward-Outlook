@@ -65,7 +65,12 @@ if __name__ == '__main__':
     while True:
         try:
             get_eml_file(drive, os.environ['FOLDER_ID'])
-            time.sleep(10)
+            time.sleep(5)
+            if Path('logs.log').stat().st_size < 1e+7:
+                with open('logs.log', 'a+') as f:
+                    f.seek(0)
+                    f.truncate()
+                    f.flush()
         except KeyboardInterrupt:
             logger.debug(f'{datetime.now()} – Interrupted by user.')
             break
