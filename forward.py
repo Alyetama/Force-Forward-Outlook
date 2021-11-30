@@ -49,11 +49,11 @@ def get_eml_file(drive, folder_id):
     if files_list:
         for file in files_list:
             try:
-                main(json.loads(file.GetContentString()))
+                send_email(json.loads(file.GetContentString()))
                 file.Delete()
             except Exception as e:
                 logger.error(f'{datetime.now()} – {e}')
-            logger.info(f'{datetime.now()} – Found a new email')
+            logger.info(f'{datetime.now()} – Found a new email!')
     else:
         logger.debug(f'{datetime.now()} – No new emails.')
 
