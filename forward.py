@@ -15,7 +15,6 @@ from loguru import logger
 from google_drive import Drive
 
 
-@cache
 def send_email(m):
     msg = MIMEMultipart('alternative')
     msg['Subject'] = m['subject']
@@ -48,12 +47,10 @@ def get_eml_file(drive, folder_id):
     }).GetList()
     if files_list:
         for file in files_list:
-            try:
-                send_email(json.loads(file.GetContentString()))
-                file.Delete()
-            except Exception as e:
-                logger.error(f'{datetime.now()} – {e}')
-            logger.info(f'{datetime.now()} – Found a new email!')
+            file_dict = json.loads(file.GetContentIOBuffer().read().decode())
+            print(file_dict)
+            send_email(file_dict)
+            file.Delete()
     else:
         logger.debug(f'{datetime.now()} – No new emails.')
 
