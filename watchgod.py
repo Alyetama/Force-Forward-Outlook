@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import asyncio
+import os
 import zipfile
 from pathlib import Path
 
@@ -10,7 +11,7 @@ from loguru import logger
 from rclone.rclone import Rclone
 from watchfiles import awatch
 
-from send import parse_eml, send_email
+from utils import parse_eml, send_email
 
 
 def zip_sent(file):

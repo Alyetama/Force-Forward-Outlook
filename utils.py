@@ -5,10 +5,10 @@ import json
 import os
 import smtplib
 import ssl
-
-import html2text
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+import html2text
 
 
 def parse_eml(eml_file: str) -> str:
