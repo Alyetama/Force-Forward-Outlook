@@ -61,11 +61,12 @@ mv .env.example .env
 
 2. Then open it in your favorite text editor and fill out the variables value.
 
-- `FROM_EMAIL`: The email you want to send from (**Not your outlook email! Can be any email address you own**).
-- `FROM_EMAIL_PASSWORD`: The password of the email you want to send from.
+- `FROM_EMAIL`: The email you want to send from (**use a Gmail address here!**).
+- `FROM_EMAIL_PASSWORD`: The password of the email you want to send from (see note bleow)*.
 - `TO_EMAIL`: Your outlook email address where automatic forwarding is disabled.
 - `REMOTE_NAME`: The name of the rclone remote you used in [Step 2](#step-2) (e.g., `mydrive`).
 
+**\*Important note: `FROM_EMAIL_PASSWORD` should not be your standrad email password! Use an [app password](https://support.google.com/accounts/answer/185833?hl=en) instead.**
 
 ## Usage
 
