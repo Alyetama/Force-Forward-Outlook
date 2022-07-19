@@ -79,7 +79,7 @@ nohup python forwardgod.py &
 ## Docker
 
 ```sh
-docker run --env-file .env \
+docker run -d --env-file .env \
     -v "$(dirname $(rclone config file | tail -1))":/root/.config/rclone \
     alyetama/force-forward-outlook:latest
 ```
