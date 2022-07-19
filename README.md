@@ -21,13 +21,15 @@ cd Force-Forward-Outlook
 
 2. Install dependencies:
 
+- If you want to use Docker, skip this step.
+
 ```sh
 pip install -r requirements.txt
 ```
 
 ### Step 2
 
-1. Download and install `Rclone` if you haven't already. Then, create a new remote (if you already one, skip this step).
+1. Download and install `Rclone` if you haven't already. Then, create a new remote if you don't have one.
 
 ```sh
 rclone config create mydrive drive
@@ -71,4 +73,13 @@ mv .env.example .env
 python forwardgod.py
 # or in the background:
 nohup python forwardgod.py &
+```
+
+
+## Docker
+
+```sh
+docker run --env-file .env \
+    -v "$(dirname $(rclone config file | tail -1))":/root/.config/rclone \
+    alyetama/force-forward-outlook:latest
 ```
