@@ -4,8 +4,10 @@
 import asyncio
 import json
 import os
+import signal
 import smtplib
 import ssl
+import sys
 import zipfile
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -19,7 +21,13 @@ from rclone.rclone import Rclone
 from watchfiles import awatch
 
 
-def parse_eml(eml_file: str) -> str:
+def keyboard_interrupt_handler(sig, _):
+    logger.warning(f'\nKeyboardInterrupt (id: {sig}) has been caught...')
+    logger.warning('Terminating the session gracefully...')
+    sys.exit(1)
+
+
+def parse_eml(eml_file):
     with open(eml_file) as j:
         eml = json.load(j)
 
@@ -98,6 +106,7 @@ async def watch_emails():
 
 
 async def main():
+    signal.signal(signal.SIGINT, keyboard_interrupt_handler)
     logger.add('logs.log')
     load_dotenv()
     init_checks()
