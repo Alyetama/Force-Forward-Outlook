@@ -77,6 +77,17 @@ def init_checks():
     if not all(os.getenv(x) for x in env):
         raise AssertionError('Missing a required environment variable!')
 
+    rc = Rclone()
+    rc_cfg = rc.config('file')
+
+    if not rc_cfg:
+        raise AssertionError('You need to configure rclone!')
+    else:
+        if os.environ['REMOTE_NAME'] not in Path(rc_cfg).read_bytes().decode():
+            raise AssertionError(
+                f'Could not find remote "{os.environ["REMOTE_NAME"]} in your '
+                f'rclone configuration file!')
+
     Path('emails/sent').mkdir(exist_ok=True, parents=True)
 
     pending_emails = [Path(x) for x in glob('emails/*') if not Path(x).is_dir()]
