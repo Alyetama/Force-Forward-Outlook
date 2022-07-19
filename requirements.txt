@@ -1,5 +1,5 @@
 python-dotenv>=0.19.1
 loguru>=0.5.3
-rclone>=0.4.2
+rclone>=0.4.3
 watchfiles>=0.15.0
 html2text>=2020.1.16
