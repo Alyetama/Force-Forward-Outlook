@@ -1,6 +1,6 @@
 # Force Forward Outlook
 
-For when your IT admin is blocking automatic email forwarding outside your organization, but you want to do it anyway.
+For when your IT admin is blocking automatic email forwarding from Outlook to addresses outside your organization, but you want to do it anyway.
 
 
 ## Requirements
@@ -81,6 +81,7 @@ nohup python forwardgod.py &
 
 ```sh
 docker run -d --env-file .env \
-    -v "$(dirname $(rclone config file | tail -1))":/root/.config/rclone \
-    alyetama/force-forward-outlook:latest
+  --restart unless-stopped \
+  -v "$(dirname $(rclone config file | tail -1))":/root/.config/rclone \
+  alyetama/force-forward-outlook:latest
 ```
